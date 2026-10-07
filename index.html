@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vishnu Poojala | Full Stack Developer</title>
+    <meta name="description" content="Portfolio of Vishnu Poojala, a Full Stack Developer and Computer Science Engineering student building modern web applications, backend systems and AI-powered solutions.">
+    <meta name="author" content="Vishnu Poojala">
+    <meta name="theme-color" content="#0a0d12">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230a0d12'/%3E%3Ctext x='50' y='68' text-anchor='middle' font-size='46' font-family='monospace' font-weight='700' fill='%232dd4bf'%3EVP%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <noscript>
+        <style>
+            .reveal { opacity: 1 !important; transform: none !important; }
+            .nav__toggle { display: none !important; }
+            .nav__menu { position: static !important; opacity: 1 !important; visibility: visible !important; transform: none !important; box-shadow: none !important; flex-direction: column !important; align-items: stretch !important; }
+        </style>
+    </noscript>
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <!-- ===== Sticky navigation ===== -->
+    <header class="site-header">
+        <nav class="nav container" aria-label="Primary">
+            <a class="nav__brand" href="#home">VP<span>.</span></a>
+
+            <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="primary-menu" aria-label="Open navigation menu">
+                <span class="nav__toggle-bar"></span>
+                <span class="nav__toggle-bar"></span>
+                <span class="nav__toggle-bar"></span>
+            </button>
+
+            <ul class="nav__menu" id="primary-menu">
+                <li><a class="nav__link is-active" href="#home">Home</a></li>
+                <li><a class="nav__link" href="#about">About</a></li>
+                <li><a class="nav__link" href="#skills">Skills</a></li>
+                <li><a class="nav__link" href="#projects">Projects</a></li>
+                <li><a class="nav__link" href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main" tabindex="-1">
+        <!-- ===== Hero ===== -->
+        <section class="hero" id="home" aria-labelledby="hero-title" tabindex="-1">
+            <div class="hero__backdrop" aria-hidden="true"></div>
+
+            <div class="container hero__grid">
+                <div class="hero__content">
+                    <p class="hero__eyebrow"><span class="hero__eyebrow-dot" aria-hidden="true"></span>Available for internships &amp; projects</p>
+
+                    <h1 class="hero__title" id="hero-title">Hi, I'm <span>Vishnu Poojala</span></h1>
+
+                    <p class="hero__role">Full Stack Developer</p>
+
+                    <p class="hero__intro">I am a Computer Science Engineering student passionate about building modern web applications, backend systems and AI-powered solutions.</p>
+
+                    <div class="hero__actions">
+                        <a class="btn btn--primary" href="#projects">View My Projects</a>
+                        <a class="btn btn--ghost" href="#contact">Contact Me</a>
+                    </div>
+
+                    <dl class="hero__meta">
+                        <div class="hero__meta-item">
+                            <dt>Degree</dt>
+                            <dd>B.Tech CSE</dd>
+                        </div>
+                        <div class="hero__meta-item">
+                            <dt>Period</dt>
+                            <dd>2024 - 2028</dd>
+                        </div>
+                        <div class="hero__meta-item">
+                            <dt>CGPA</dt>
+                            <dd>7.8</dd>
+                        </div>
+                    </dl>
+                </div>
+
+                <!-- Decorative code window (CSS/HTML only, no images) -->
+                <div class="hero__visual" aria-hidden="true">
+                    <div class="code-window">
+                        <div class="code-window__bar">
+                            <span class="code-window__dot"></span>
+                            <span class="code-window__dot"></span>
+                            <span class="code-window__dot"></span>
+                            <span class="code-window__file">developer.js</span>
+                        </div>
+                        <pre class="code-window__body"><code><span class="tok-keyword">const</span> <span class="tok-key">developer</span> = {
+  <span class="tok-key">name</span>: <span class="tok-string">"Vishnu Poojala"</span>,
+  <span class="tok-key">role</span>: <span class="tok-string">"Full Stack Developer"</span>,
+  <span class="tok-key">stack</span>: [<span class="tok-string">"Java"</span>, <span class="tok-string">"Spring Boot"</span>, <span class="tok-string">"MySQL"</span>],
+  <span class="tok-key">focus</span>: [<span class="tok-string">"Web"</span>, <span class="tok-string">"Backend"</span>, <span class="tok-string">"AI"</span>],
+  <span class="tok-key">goal</span>: <span class="tok-string">"build useful real-world apps"</span>
+};
+
+<span class="tok-keyword">async function</span> <span class="tok-function">buildFuture</span>() {
+  <span class="tok-keyword">await</span> developer.<span class="tok-function">learn</span>(<span class="tok-string">"every day"</span>);
+  <span class="tok-keyword">return</span> <span class="tok-string">"shipped ✔"</span>;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== About ===== -->
+        <section class="section section--alt" id="about" aria-labelledby="about-title" tabindex="-1">
+            <div class="container">
+                <header class="section__head reveal">
+                    <p class="section__eyebrow">01 / About</p>
+                    <h2 class="section__title" id="about-title">A developer who keeps learning</h2>
+                    <p class="section__lead">I enjoy turning problems into clean, working software — from database design and REST APIs all the way to the user interface.</p>
+                </header>
+
+                <div class="about__grid">
+                    <div class="about__text reveal">
+                        <p>I am a Computer Science Engineering student working toward becoming a skilled <strong>Full Stack Developer</strong>. My strength lies in backend development with Java and Spring Boot, and I am equally comfortable building interfaces with HTML, CSS and JavaScript.</p>
+                        <p>Beyond the backend, I am exploring <strong>AI</strong> and retrieval-based systems to build smarter applications. I care about writing code that is readable, maintainable and genuinely useful to the people who use it.</p>
+
+                        <ul class="about__list">
+                            <li>Strong interest in backend development and REST API design</li>
+                            <li>Exploring AI-powered features and document intelligence</li>
+                            <li>Building real-world applications, not just tutorial projects</li>
+                            <li>Committed to continuous learning and improving every day</li>
+                        </ul>
+                    </div>
+
+                    <aside class="education-card reveal" aria-label="Education details">
+                        <p class="education-card__label">Education</p>
+                        <h3 class="education-card__degree">B.Tech Computer Science Engineering</h3>
+                        <p class="education-card__college">Aurora's Scientific and Technological Institute</p>
+
+                        <dl class="education-card__facts">
+                            <div class="education-card__fact">
+                                <dt>Period</dt>
+                                <dd>2024 - 2028</dd>
+                            </div>
+                            <div class="education-card__fact">
+                                <dt>CGPA</dt>
+                                <dd>7.8</dd>
+                            </div>
+                            <div class="education-card__fact">
+                                <dt>Status</dt>
+                                <dd>In progress</dd>
+                            </div>
+                        </dl>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Skills ===== -->
+        <section class="section" id="skills" aria-labelledby="skills-title" tabindex="-1">
+            <div class="container">
+                <header class="section__head reveal">
+                    <p class="section__eyebrow">02 / Skills</p>
+                    <h2 class="section__title" id="skills-title">Technologies I work with</h2>
+                    <p class="section__lead">Grouped by area so you can quickly see where I am most comfortable.</p>
+                </header>
+
+                <div class="skills__grid">
+                    <article class="skill-card reveal">
+                        <div class="skill-card__head">
+                            <span class="skill-card__icon" aria-hidden="true">&lt;/&gt;</span>
+                            <h3 class="skill-card__title">Frontend</h3>
+                        </div>
+                        <ul class="skill-card__tags">
+                            <li class="tag">HTML5</li>
+                            <li class="tag">CSS3</li>
+                            <li class="tag">JavaScript</li>
+                        </ul>
+                    </article>
+
+                    <article class="skill-card reveal">
+                        <div class="skill-card__head">
+                            <span class="skill-card__icon" aria-hidden="true">{ }</span>
+                            <h3 class="skill-card__title">Backend</h3>
+                        </div>
+                        <ul class="skill-card__tags">
+                            <li class="tag">Java</li>
+                            <li class="tag">Spring Boot</li>
+                            <li class="tag">REST APIs</li>
+                        </ul>
+                    </article>
+
+                    <article class="skill-card reveal">
+                        <div class="skill-card__head">
+                            <span class="skill-card__icon" aria-hidden="true">DB</span>
+                            <h3 class="skill-card__title">Database</h3>
+                        </div>
+                        <ul class="skill-card__tags">
+                            <li class="tag">MySQL</li>
+                            <li class="tag">SQL</li>
+                        </ul>
+                    </article>
+
+                    <article class="skill-card reveal">
+                        <div class="skill-card__head">
+                            <span class="skill-card__icon" aria-hidden="true">&lt;/&gt;</span>
+                            <h3 class="skill-card__title">Programming</h3>
+                        </div>
+                        <ul class="skill-card__tags">
+                            <li class="tag">Java</li>
+                            <li class="tag">Python</li>
+                            <li class="tag">Dart</li>
+                        </ul>
+                    </article>
+
+                    <article class="skill-card reveal">
+                        <div class="skill-card__head">
+                            <span class="skill-card__icon" aria-hidden="true">APP</span>
+                            <h3 class="skill-card__title">Mobile</h3>
+                        </div>
+                        <ul class="skill-card__tags">
+                            <li class="tag">Flutter</li>
+                            <li class="tag">Dart</li>
+                        </ul>
+                    </article>
+
+                    <article class="skill-card reveal">
+                        <div class="skill-card__head">
+                            <span class="skill-card__icon" aria-hidden="true">GIT</span>
+                            <h3 class="skill-card__title">Tools</h3>
+                        </div>
+                        <ul class="skill-card__tags">
+                            <li class="tag">Git</li>
+                            <li class="tag">GitHub</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Projects ===== -->
+        <section class="section section--alt" id="projects" aria-labelledby="projects-title" tabindex="-1">
+            <div class="container">
+                <header class="section__head reveal">
+                    <p class="section__eyebrow">03 / Projects</p>
+                    <h2 class="section__title" id="projects-title">Things I have built</h2>
+                    <p class="section__lead">A mix of agriculture, AI and mobile projects — each solving a real problem end to end.</p>
+                </header>
+
+                <div class="projects__grid">
+                    <article class="project-card reveal">
+                        <p class="project-card__index">Project 01</p>
+                        <h3 class="project-card__title">Smart Farmer Advisor</h3>
+                        <p class="project-card__desc">A smart agriculture application that helps farmers identify crop-related diseases and provides fertilizer recommendations.</p>
+                        <ul class="project-card__tech" aria-label="Technologies used">
+                            <li class="tag">Java</li>
+                            <li class="tag">Spring Boot</li>
+                            <li class="tag">MySQL</li>
+                        </ul>
+                        <div class="project-card__actions">
+                            <button class="btn btn--ghost" type="button" disabled>GitHub <span class="btn__note">Coming Soon</span></button>
+                            <button class="btn btn--ghost" type="button" disabled>Live Demo <span class="btn__note">Coming Soon</span></button>
+                        </div>
+                    </article>
+
+                    <article class="project-card reveal">
+                        <p class="project-card__index">Project 02</p>
+                        <h3 class="project-card__title">Hybrid RAG Knowledge Assistant</h3>
+                        <p class="project-card__desc">An AI-powered document knowledge assistant that lets users upload PDF documents and ask questions about the content. It uses hybrid retrieval and returns grounded answers with page-level citations.</p>
+                        <ul class="project-card__tech" aria-label="Technologies used">
+                            <li class="tag">Python</li>
+                            <li class="tag">FastAPI</li>
+                            <li class="tag">Qdrant</li>
+                            <li class="tag">BM25</li>
+                            <li class="tag">Sentence Transformers</li>
+                            <li class="tag">Groq</li>
+                        </ul>
+                        <div class="project-card__actions">
+                            <button class="btn btn--ghost" type="button" disabled>GitHub <span class="btn__note">Coming Soon</span></button>
+                            <button class="btn btn--ghost" type="button" disabled>Live Demo <span class="btn__note">Coming Soon</span></button>
+                        </div>
+                    </article>
+
+                    <article class="project-card reveal">
+                        <p class="project-card__index">Project 03</p>
+                        <h3 class="project-card__title">LocalWala</h3>
+                        <p class="project-card__desc">A Flutter-based local delivery application designed to connect customers with local services and delivery functionality.</p>
+                        <ul class="project-card__tech" aria-label="Technologies used">
+                            <li class="tag">Flutter</li>
+                            <li class="tag">Dart</li>
+                            <li class="tag">REST APIs</li>
+                            <li class="tag">Backend</li>
+                        </ul>
+                        <div class="project-card__actions">
+                            <button class="btn btn--ghost" type="button" disabled>GitHub <span class="btn__note">Coming Soon</span></button>
+                            <button class="btn btn--ghost" type="button" disabled>Live Demo <span class="btn__note">Coming Soon</span></button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Contact ===== -->
+        <section class="section" id="contact" aria-labelledby="contact-title" tabindex="-1">
+            <div class="container">
+                <header class="section__head reveal">
+                    <p class="section__eyebrow">04 / Contact</p>
+                    <h2 class="section__title" id="contact-title">Let's build something together</h2>
+                    <p class="section__lead">Have a project, an internship opportunity or just a question? Send me a message.</p>
+                </header>
+
+                <div class="contact__grid">
+                    <div class="contact__info reveal">
+                        <ul class="contact__list">
+                            <li>
+                                <a class="contact-item" href="mailto:vishnupoojala0@gmail.com">
+                                    <span class="contact-item__icon" aria-hidden="true">@</span>
+                                    <span class="contact-item__body">
+                                        <span class="contact-item__label">Email</span>
+                                        <span class="contact-item__value">vishnupoojala0@gmail.com</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="contact-item" href="https://linkedin.com/in/vishnu-poojala-04815734a" target="_blank" rel="noopener noreferrer">
+                                    <span class="contact-item__icon" aria-hidden="true">in</span>
+                                    <span class="contact-item__body">
+                                        <span class="contact-item__label">LinkedIn</span>
+                                        <span class="contact-item__value">vishnu-poojala</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="contact-item" href="https://github.com/collegecoders2/Backend-Course" target="_blank" rel="noopener noreferrer">
+                                    <span class="contact-item__icon" aria-hidden="true">&lt;/&gt;</span>
+                                    <span class="contact-item__body">
+                                        <span class="contact-item__label">Source Code</span>
+                                        <span class="contact-item__value">This portfolio repository</span>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <p class="contact__note">This site has no backend, so the form below prepares your message and hands it over to your own email client.</p>
+                    </div>
+
+                    <form class="form reveal" id="contact-form" novalidate aria-label="Contact form">
+                        <div class="form__grid">
+                            <p class="form__field">
+                                <label class="form__label" for="name">Name <span class="form__required" aria-hidden="true">*</span></label>
+                                <input class="form__control" id="name" name="name" type="text" autocomplete="name" placeholder="Your full name" required aria-describedby="name-error">
+                                <span class="form__error" id="name-error"></span>
+                            </p>
+
+                            <p class="form__field">
+                                <label class="form__label" for="email">Email <span class="form__required" aria-hidden="true">*</span></label>
+                                <input class="form__control" id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required aria-describedby="email-error">
+                                <span class="form__error" id="email-error"></span>
+                            </p>
+
+                            <p class="form__field form__field--full">
+                                <label class="form__label" for="message">Message <span class="form__required" aria-hidden="true">*</span></label>
+                                <textarea class="form__control" id="message" name="message" rows="5" placeholder="Tell me about your project or opportunity..." required aria-describedby="message-error"></textarea>
+                                <span class="form__error" id="message-error"></span>
+                            </p>
+                        </div>
+
+                        <div class="form__footer">
+                            <button class="btn btn--primary" type="submit">Prepare Message</button>
+                            <p class="form__hint">Your details stay in your browser — nothing is sent to a server.</p>
+                        </div>
+
+                        <p class="form__status" id="form-status" role="status" aria-live="polite" tabindex="-1"></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer__top">
+                <div class="footer__brand">
+                    <p class="footer__name">Vishnu Poojala</p>
+                    <p class="footer__tagline">Full Stack Developer &middot; B.Tech CSE (2024 - 2028)</p>
+                </div>
+
+                <nav aria-label="Footer">
+                    <ul class="footer__links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="https://github.com/collegecoders2/Backend-Course" target="_blank" rel="noopener noreferrer">Source Code</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <p class="footer__copy">&copy; 2026 Vishnu Poojala. Built with HTML5, CSS3 and vanilla JavaScript.</p>
+        </div>
+    </footer>
+</body>
+</html>
