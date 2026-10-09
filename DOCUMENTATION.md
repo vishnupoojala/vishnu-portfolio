@@ -27,11 +27,24 @@ Backend-Course/
 │   └── workflows/
 │       └── deploy-portfolio.yml                # optional GitHub Pages deployment workflow
 │
-└── portfolio/                                  # ← the entire website lives here
+└── portfolio/                                  # ← the entire website + WA-2 backend live here
     ├── index.html                              # page structure + all content (semantic markup)
     ├── style.css                               # complete design system and responsive layout
     ├── script.js                               # all JavaScript interactions
-    ├── README.md                               # short project readme (run + deploy instructions)
+    ├── projects-loader.js                      # optional: live project cards from the backend API
+    ├── server.js                               # WA-2 backend entry point (Express)
+    ├── package.json                            # backend dependencies + start/dev/test scripts
+    ├── .env.example                            # environment placeholders (real .env is git-ignored)
+    ├── .gitignore
+    ├── tests/
+    │   └── api.test.js                         # automated API test suite (33 assertions)
+    ├── src/
+    │   ├── config/db.js                        # Mongoose connection
+    │   ├── models/                             # User.js, Project.js
+    │   ├── controllers/                        # authController.js, projectController.js
+    │   ├── middleware/                         # auth, validation, error handling
+    │   └── routes/                             # authRoutes, projectRoutes, publicProjectRoutes
+    ├── README.md                               # project readme (frontend + backend API docs)
     └── DOCUMENTATION.md                        # this file
 ```
 
@@ -40,6 +53,10 @@ Backend-Course/
 | Entry point / home page | `portfolio/index.html` |
 | Styles | `portfolio/style.css` |
 | JavaScript | `portfolio/script.js` |
+| Live projects loader (optional) | `portfolio/projects-loader.js` |
+| Backend entry point | `portfolio/server.js` |
+| Backend source | `portfolio/src/` |
+| API tests | `portfolio/tests/api.test.js` |
 | Project readme | `portfolio/README.md` |
 | This documentation | `portfolio/DOCUMENTATION.md` |
 | GitHub Pages workflow | `.github/workflows/deploy-portfolio.yml` |
@@ -76,7 +93,7 @@ Head section contents:
 - `<title>Vishnu Poojala | Full Stack Developer</title>` — required SEO title.
 - `meta description`, `meta author`, `meta theme-color` — basic SEO and browser chrome.
 - Inline SVG **favicon** (data URI) — no image file, therefore no broken image.
-- `<link rel="stylesheet" href="style.css">` and `<script src="script.js" defer>`.
+- `<link rel="stylesheet" href="style.css">`, `<script src="script.js" defer>` and `<script src="projects-loader.js" defer>` (the latter is optional — it only swaps in live project cards when the backend API answers, otherwise it does nothing).
 - A `<noscript>` block with a small `<style>` fallback: if JavaScript is disabled, reveal animations are skipped and the navigation menu is rendered as a plain static list, so the page stays fully usable.
 
 Heading hierarchy is strict: one `<h1>` in the Hero, one `<h2>` per section, `<h3>` for cards inside a section.
@@ -88,7 +105,7 @@ Section contents:
 | **Hero** (`#home`) | `h1` "Hi, I'm Vishnu Poojala", role "Full Stack Developer", the required introduction line, CTA buttons "View My Projects" / "Contact Me", quick facts (B.Tech CSE, 2024 - 2028, CGPA 7.8), and the decorative code window (`aria-hidden="true"` because it repeats information already in text). |
 | **About** (`#about`) | Two-column layout: career/interest text (backend, AI, real-world apps, continuous learning) plus an education card with Aurora's Scientific and Technological Institute, 2024 - 2028 and CGPA 7.8. |
 | **Skills** (`#skills`) | Six cards — Frontend (HTML5, CSS3, JavaScript), Backend (Java, Spring Boot, REST APIs), Database (MySQL, SQL), Programming (Java, Python, Dart), Mobile (Flutter, Dart), Tools (Git, GitHub). All 13 required skills appear; skill levels are shown as badges, **never** as fake percentages. |
-| **Projects** (`#projects`) | Three `<article>` cards: Smart Farmer Advisor, Hybrid RAG Knowledge Assistant, LocalWala — each with name, description, technology badges, and **disabled** "GitHub — Coming Soon" / "Live Demo — Coming Soon" buttons, because no real URLs exist yet (no invented links). |
+| **Projects** (`#projects`) | Three `<article>` cards: Smart Farmer Advisor, Hybrid RAG Knowledge Assistant, LocalWala — each with name, description, technology badges, and **disabled** "GitHub — Coming Soon" / "Live Demo — Coming Soon" buttons, because no public URLs exist yet (no invented links). These static cards are the permanent fallback; when the WA-2 backend is running, `projects-loader.js` replaces them with the live list from `GET /api/public/projects` using exactly the same markup. |
 | **Contact** (`#contact`) | Contact list (mailto link, LinkedIn profile, source-code link) and a `novalidate` form with Name / Email / Message + "Prepare Message" button and a live status area (`role="status"`). |
 
 ### 3.2 `portfolio/style.css` — design system and layout
@@ -232,3 +249,47 @@ Testing was done in headless Chrome against the real files, not by eye alone.
 - **Add a GitHub profile:** in the Contact section, add another `<li>` entry modelled on the existing LinkedIn one, then update `portfolio/README.md`.
 - **Change the theme:** edit only the `:root` tokens at the top of `portfolio/style.css`.
 - **Add a section:** copy the pattern — `<section class="section" id="your-id" aria-labelledby="..." tabindex="-1">`, add a matching nav link, and the scroll-spy logic picks it up automatically.
+
+---
+
+## 8. WA-2 backend API (added on top of the static site)
+
+The portfolio now also contains a **Node.js + Express + MongoDB REST API** with JWT authentication (Valentius Kryptix WA-2 task). It lives in the same `portfolio/` folder; the frontend above is untouched except for one extra `<script>` tag. Full endpoint reference, request/response examples and Postman steps are in [README.md](README.md#portfolio-backend-api--wa-2).
+
+### 8.1 What it exposes
+
+| Method | Endpoint | Auth | Purpose |
+| --- | --- | --- | --- |
+| GET | `/api/health` | — | liveness check |
+| POST | `/api/auth/register` | — | create account (bcrypt-hashed password, 201, 409 on duplicate email) |
+| POST | `/api/auth/login` | — | get a JWT containing the user id |
+| POST/GET/PUT/DELETE | `/api/projects[/:id]` | Bearer | full CRUD, scoped to the authenticated owner only |
+| GET | `/api/public/projects` | — | read-only list (featured first), never exposes owner or user data |
+
+### 8.2 How the pieces fit together
+
+- `server.js` loads `.env`, verifies `JWT_SECRET`, connects Mongoose and **only then** listens on port `5000`; unknown routes get a JSON 404 and all errors flow through one central error handler with safe messages.
+- `src/middleware/authMiddleware.js` verifies the `Authorization: Bearer <token>` header, rejects missing/garbage/expired tokens with 401, and attaches `req.user` — project ownership always comes from the token, never from the request body.
+- `src/routes/projectRoutes.js` validates every write with `express-validator` (title, description, `technologies` as a non-empty string array, optional http(s) URLs, valid MongoDB ids).
+- `tests/api.test.js` (`npm test`) starts the real server against an isolated `portfolio_backend_test` database, exercises every endpoint above, then drops the database.
+
+### 8.3 Running it
+
+```bash
+cd portfolio
+copy .env.example .env     # then set your own JWT_SECRET and MONGODB_URI
+npm install
+npm start                  # or npm run dev (nodemon) / npm test
+```
+
+### 8.4 The frontend connection (`projects-loader.js`)
+
+`projects-loader.js` is deliberately **optional and additive**:
+
+1. It fetches `GET /api/public/projects` from the backend (base URL configurable via `window.PORTFOLIO_API_URL` or a `data-api-base` attribute; default `http://127.0.0.1:5000`).
+2. **Only** if the request succeeds and at least one valid project comes back does it replace the cards inside `.projects__grid`, building the exact same `.project-card` markup with DOM APIs (`textContent` only — server data is never interpolated into HTML).
+3. If the API is down, times out (4s), returns an error, or returns an empty list, it silently does nothing and the hardcoded cards stay on screen.
+
+So the site works identically with the backend stopped — which is exactly what happens on GitHub Pages, where no API is available.
+
+To verify it yourself: start the backend, log in, create a project through `/api/projects`, then reload the portfolio page — the new project appears as a card (featured ones first) with working GitHub / Live Demo buttons, or "Coming Soon" disabled buttons when a URL is empty.
